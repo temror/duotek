@@ -1,0 +1,26 @@
+$main-color: #030953;
+$custom-red: #EF3E4A;
+$title-font: Raleway, sans-serif;
+
+html,body, #__nuxt, #__layout{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Rubik, sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1 0 auto;
+  height: 100%;
+}
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 100ms;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
