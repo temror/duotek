@@ -78,7 +78,7 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import "../../duotek-nuxt/assets/css/main";
+@import "@/assets/css/main";
 .footer {
   border-top: 1px solid #F2F2F2;
   font-family: IBM Plex Sans, sans-serif;

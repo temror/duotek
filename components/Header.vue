@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../duotek-nuxt/assets/css/main";
+@import "@/assets/css/main";
 .nav{
   border-bottom: 1px solid #F2F2F2;
   margin-bottom: 60px;

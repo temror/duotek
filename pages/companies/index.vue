@@ -18,7 +18,7 @@
 </script>
 
 <style lang="scss" scoped>
-@import "../../../duotek-nuxt/assets/css/main";
+@import "../../assets/css/main";
 .companies {
   min-height: 100%;
   &__title{

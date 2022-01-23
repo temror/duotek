@@ -69,7 +69,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../duotek-nuxt/assets/css/main";
+@import "@/assets/css/main";
 
 .search {
   padding: 10px;
@@ -87,7 +87,7 @@ export default {
     padding: 10px 40px;
     border: 1px solid #E5E5E5;
     border-radius: 4px 0 0 4px;
-    background: url("../../duotek-nuxt/assets/icons/serch.svg") no-repeat 1% 50%;
+    background: url("@/assets/icons/serch.svg") no-repeat 1% 50%;
   }
 
   &__clear{

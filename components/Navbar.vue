@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../duotek-nuxt/assets/css/main";
+@import "@/assets/css/main";
 .navbar {
   flex: 1 0 auto;
   display: flex;

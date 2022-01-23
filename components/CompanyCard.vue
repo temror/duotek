@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../duotek-nuxt/assets/css/main";
+@import "@/assets/css/main";
 
 .company {
   display: flex;
