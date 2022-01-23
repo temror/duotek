@@ -19,9 +19,14 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
+import { usePagination } from '../composables/usePagination'
 
 export default {
+  setup () {
+    const { pages, pageComputed, showPagination, changePage } = usePagination()
+    return { pages, pageComputed, showPagination, changePage }
+  },
   data () {
     return {
       isActive: {
@@ -30,31 +35,10 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters(['pagination']),
-    ...mapState(['companies', 'totalCount', 'per_page', 'query', 'page']),
-    pageComputed () { return Number(this.page) },
-    pages () {
-      const arr = []
-      for (let i = 0; i < this.pagination; i++) {
-        arr[i] = i + 1
-      }
-      return arr
-    },
-    showPagination () { return this.totalCount > this.per_page }
-  },
-  mounted () {
-    this.query.page && this.setPage(this.query.page)
-  },
+  computed: { ...mapState(['query']) },
+  mounted () { this.query.page && this.setPage(this.query.page) },
   methods: {
-    ...mapMutations(['setSearchItem', 'setPage']),
-    changePage (page) {
-      this.setSearchItem('')
-      this.setPage(page)
-      this.$store.commit('setQuery', { page: `${page}` })
-      this.$store.dispatch('getCompanies', { page: `${page}` })
-      this.$router.push({ name: 'companies', query: { page: `${page}` } })
-    }
+    ...mapMutations(['setPage'])
   }
 }
 </script>
@@ -76,7 +60,8 @@ export default {
     cursor: pointer;
     color: $main-color;
     border-radius: 4px;
-    &:hover{
+
+    &:hover {
       color: $custom-red;
     }
   }

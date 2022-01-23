@@ -9,7 +9,9 @@ export const state = () => ({
   specialization: '',
   page: 1,
   per_page: 10,
-  totalCount: null
+  totalCount: null,
+  viewIndustry: false,
+  viewSpecialization: false
 })
 export const mutations = {
   setSearchItem (state, searchItem) {
@@ -41,6 +43,12 @@ export const mutations = {
   },
   setQuery (state, query) {
     state.query = query
+  },
+  setViewIndustry (state, industry) {
+    state.viewIndustry = industry
+  },
+  setViewSpecialization (state, spec) {
+    state.viewSpecialization = spec
   }
 }
 export const getters = {

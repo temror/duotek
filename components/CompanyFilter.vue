@@ -85,76 +85,24 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import { useShowFilter } from '../composables/useShowFilter'
+import { useGetFilter } from '../composables/useGetFilter'
 
 export default {
-  data () {
-    return {
-      viewIndustry: false,
-      viewSpecialization: false
-    }
+  setup (props) {
+    const { showIndustry, showSpecialization } = useShowFilter()
+    const { getIndustry, getSpecialization, clearSpecialization, clearIndustry } = useGetFilter()
+    return { showIndustry, showSpecialization, getIndustry, getSpecialization, clearSpecialization, clearIndustry }
+  },
+  async fetch () {
+    await this.getDefinitions(this.query)
   },
   computed: {
-    ...mapState(['definitions', 'industry', 'searchItem', 'query', 'specialization'])
-  },
-  mounted () {
-    this.getDefinitions(this.query)
+    ...mapState(['definitions', 'industry', 'query', 'specialization', 'viewSpecialization', 'viewIndustry'])
   },
   methods: {
-    ...mapActions(['getCompanies', 'getDefinitions']),
-    ...mapMutations(['setIndustry', 'setQuery', 'setSpecialization', 'setPage']),
-    showSpecialization () {
-      this.viewSpecialization ? this.viewSpecialization = false : this.viewSpecialization = true
-      this.viewIndustry = false
-    },
-    showIndustry () {
-      this.viewIndustry ? this.viewIndustry = false : this.viewIndustry = true
-      this.viewSpecialization = false
-    },
-    getIndustry (industry) {
-      const newQuery = { ...this.query }
-      newQuery.industry = industry.id
-      if (newQuery.page) {
-        delete newQuery.page
-        this.setPage('1')
-      }
-      this.setQuery(newQuery)
-      this.setIndustry(industry)
-      this.getCompanies()
-      this.$router.push({ name: 'companies', query: newQuery })
-      this.viewIndustry = false
-    },
-    clearIndustry () {
-      const newQuery = { ...this.query }
-      delete newQuery.industry
-      this.setQuery(newQuery)
-      this.setIndustry(null)
-      this.getCompanies()
-      this.$router.push({ name: 'companies', query: newQuery })
-      this.viewIndustry = false
-    },
-    getSpecialization (specialization) {
-      const newQuery = { ...this.query }
-      newQuery.specialization = specialization.id
-      if (newQuery.page) {
-        delete newQuery.page
-        this.setPage('1')
-      }
-      this.setQuery(newQuery)
-      this.setSpecialization(specialization)
-      this.getCompanies()
-      this.$router.push({ name: 'companies', query: newQuery })
-      this.viewSpecialization = false
-    },
-    clearSpecialization () {
-      const newQuery = { ...this.query }
-      delete newQuery.specialization
-      this.setQuery(newQuery)
-      this.setSpecialization(null)
-      this.getCompanies()
-      this.$router.push({ name: 'companies', query: newQuery })
-      this.viewSpecialization = false
-    }
+    ...mapActions(['getDefinitions'])
   }
 }
 </script>

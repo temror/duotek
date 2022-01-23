@@ -64,9 +64,8 @@ export default {
     line-height: 150%;
     transition-duration: 400ms;
     &:hover{
-      border-bottom: 1px solid $main-color;
       opacity: 0.5;
-      transition-duration: 400ms;
+      transition-duration: 200ms;
     }
   }
   .dark{
@@ -97,7 +96,9 @@ export default {
     a{
       color: lightgrey;
       font-size: 25px;
+      border-bottom: 1px solid $main-color;
       &:hover{
+        border-bottom: 1px solid white;
         background-color: lightgrey;
         color: #030953;
       }

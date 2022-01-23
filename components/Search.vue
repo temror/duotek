@@ -25,46 +25,19 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapState } from 'vuex'
+import { mapState } from 'vuex'
+import { useSearch } from '../composables/useSearch'
 
 export default {
+  setup () {
+    const { setSearch, setSortedCompanies, clearSearch } = useSearch()
+    return { setSearch, setSortedCompanies, clearSearch }
+  },
   computed: {
-    ...mapState(['searchItem', 'totalCount', 'per_page', 'page', 'query'])
+    ...mapState(['searchItem', 'query'])
   },
   mounted () {
-    this.query.search && this.setSearchItem(this.query.search)
-  },
-  methods: {
-    ...mapMutations(['setSearchItem', 'setSortedCompanies', 'setQuery', 'setPage']),
-    ...mapActions(['getCompanies']),
-    setSearch (event) {
-      return this.setSearchItem(event.target.value)
-    },
-    setSortedCompanies () {
-      if (this.searchItem.length === 0) { this.clearSearch() } else if (this.searchItem.length !== 1) {
-        const newQuery = { ...this.query }
-        newQuery.search = this.searchItem
-        if (newQuery.page) {
-          delete newQuery.page
-          this.setPage('1')
-        }
-        this.setQuery(newQuery)
-        this.getCompanies()
-        this.$router.push({ name: 'companies', query: newQuery })
-      }
-    },
-    clearSearch () {
-      if (this.query.search) {
-        const newQuery = { ...this.query }
-        delete newQuery.search
-        this.setQuery(newQuery)
-        this.setSearchItem('')
-        this.getCompanies()
-        this.$router.push({ name: 'companies', query: newQuery })
-      } else {
-        this.setSearchItem('')
-      }
-    }
+    this.query.search && this.$store.commit('setSearchItem', this.query.search)
   }
 }
 </script>
