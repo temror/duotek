@@ -1,8 +1,8 @@
 <template>
-  <div class="companies-content">
+  <main class="companies-content">
     <Search />
     <CompaniesList />
-  </div>
+  </main>
 </template>
 <script>
 export default {}

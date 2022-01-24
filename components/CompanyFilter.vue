@@ -1,18 +1,20 @@
 <template>
   <div class="company-filter">
     <div class="company-filter__block">
-      <p>Отрасль</p>
-      <div class="sortArea">
+      <p class="company-filter__title">
+        Отрасль
+      </p>
+      <div class="company-filter__sort-area">
         <div
-          class="sortItem sortItem_main"
+          class="company-filter__sort-item sort-item sort-item_main"
           :style="!industry && {color: 'grey'}"
           @click="showIndustry"
         >
           {{ industry ? industry.title : 'Вся индустрия' }}
-          <div class="sortItem__icons">
+          <div class="sort-item__icons">
             <span
               v-if="industry"
-              class="sortItem__clear"
+              class="sort-item__clear"
               @click.stop="clearIndustry"
             >+</span>
             <img
@@ -26,13 +28,13 @@
         <transition name="sortGroup">
           <div
             v-if="viewIndustry"
-            class="sortGroup"
+            class="company-filter__sort-group"
             style="z-index: 1000"
           >
             <div
               v-for="industry in definitions.Industry"
               :key="industry.id"
-              class="sortItem"
+              class="sort-item"
               @click="getIndustry(industry)"
             >
               {{ industry.title }}
@@ -42,18 +44,20 @@
       </div>
     </div>
     <div class="company-filter__block">
-      <p>Специализация</p>
-      <div class="sortArea">
+      <p class="company-filter__title">
+        Специализация
+      </p>
+      <div class="company-filter__sort-area">
         <div
-          class="sortItem sortItem_main"
+          class="company-filter__sort-item sort-item sort-item_main"
           :style="!specialization && {color: 'grey'}"
           @click="showSpecialization"
         >
           {{ specialization ? specialization.title : 'Вся  специализация' }}
-          <div class="sortItem__icons">
+          <div class="sort-item__icons">
             <span
               v-if="specialization"
-              class="sortItem__clear"
+              class="sort-item__clear"
               @click.stop="clearSpecialization"
             >+</span>
             <img
@@ -67,12 +71,12 @@
         <transition name="sortGroup">
           <div
             v-if="viewSpecialization"
-            class="sortGroup"
+            class="company-filter__sort-group"
           >
             <div
               v-for="specialization in definitions.CompanySpecialization"
               :key="specialization.id"
-              class="sortItem"
+              class="sort-item"
               @click="getSpecialization(specialization)"
             >
               {{ specialization.title }}
@@ -124,9 +128,20 @@ export default {
       width: 100%;
     }
   }
+  &__sort-area{
+    position: relative;
+  }
+  &__sort-group{
+    z-index: 1;
+    position: absolute;
+    border-radius: 4px;
+    top: 48px;
+    border: 1px solid grey;
+    width: 100%;
+  }
 }
 
-.sortItem {
+.sort-item {
   background-color: white;
   color: #1C1C1E;
   padding: 16px;
@@ -169,19 +184,6 @@ export default {
       background: white;
     }
   }
-}
-
-.sortArea {
-  position: relative;
-}
-
-.sortGroup {
-  z-index: 1;
-  position: absolute;
-  border-radius: 4px;
-  top: 48px;
-  border: 1px solid grey;
-  width: 100%;
 }
 
 .sortGroup-enter-active, .sortGroup-leave-active {

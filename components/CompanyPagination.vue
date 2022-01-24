@@ -6,7 +6,7 @@
     <div
       v-for="number in pages"
       :key="number"
-      class="pag"
+      class="company-pagination__item"
       :style="number===pageComputed&&{
         backgroundColor: '#F7F7F7',
         color: '#808080'
@@ -53,7 +53,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  .pag {
+  &__item {
     padding: 13px;
     margin: 4px;
     font-size: 16px;

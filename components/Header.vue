@@ -1,7 +1,7 @@
 <template>
   <header class="nav" :class="{nav_dark:theme}">
     <div class="container">
-      <div class="nav__content">
+      <nav class="nav__content">
         <Logo />
         <Navbar class="navbar" :active-menu="activeMenu" @changeMenu="changeMenu" />
         <Hamburger
@@ -9,7 +9,7 @@
           class="hamburger"
           @changeMenu="changeMenu"
         />
-      </div>
+      </nav>
     </div>
   </header>
 </template>
